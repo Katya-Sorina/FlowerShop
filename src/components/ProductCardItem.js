@@ -7,6 +7,7 @@ export default function ProductCardItem({
   priceWithSale,
   priceWithoutSale,
   sale,
+  setProductArray
 }) {
   const alertId = () => {
     console.log(productId);
@@ -21,7 +22,7 @@ export default function ProductCardItem({
       <p>
         <span>{priceWithoutSale} тг</span>
       </p>
-      <button onClick={alertId}>В корзину</button>
+      <button onClick={()=>{setProductArray([])}}>В корзину</button>
     </div>
   );
 }
