@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import FlowerListItem from "./FlowerListItem";
+import ButtonGroup from "./ButtonGroup";
 
 const dataFlowers = [
   {
@@ -23,7 +24,7 @@ const dataFlowers = [
   {
     id: 4,
     name: "tulips",
-    country: "Franse",
+    country: "France",
     price: 2000,
   },
   {
@@ -42,9 +43,14 @@ const dataFlowers = [
 
 export default function FlowerList() {
   const [inputSearchData, setInputSearchData] = useState("");
+  const [countries, setCountries] = useState([]);
 
   return (
     <>
+      <ButtonGroup
+        countries={countries}
+        setCountries={setCountries}
+      ></ButtonGroup>
       <input
         value={inputSearchData}
         onChange={(e) => {
@@ -56,6 +62,10 @@ export default function FlowerList() {
         <FlowerListItem properties = {dataFlowers[4]}></FlowerListItem> */}
 
         {dataFlowers
+          .filter((item) =>
+            countries.length > 0 ? countries.includes(item.country) : item
+          )
+
           .filter((flower) => {
             if (
               flower.name
